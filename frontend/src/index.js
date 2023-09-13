@@ -4,7 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const frontendPort = process.env.FRONTEND_PORT || 3000;
 const root = ReactDOM.createRoot(document.getElementById('root'));
+console.log(`Frontend is running on port ${frontendPort}`);
+
 root.render(
   <React.StrictMode>
     <App />
