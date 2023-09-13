@@ -11,16 +11,24 @@ const Task = require('./models/Task');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/todoapp', {
+// const MONGODB_URI = 'mongodb://localhost:27017/todoapp';
+const MONGODB_URI = 'mongodb://pwcnew:7KLjl8v40FEScu8qoNTQnRCUzif9owslJOuZKjZ06xM5BgvNW14Lm9F4CvTpQ23mqCxiXPgZkESCACDbIykjcA==@pwcnew.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@pwcnew@/todoapp';
+// Connect to MongoDB
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
-.then(() => {
+},6000000);
+
+// Get the default connection
+const db = mongoose.connection;
+
+// Event handlers for connection success and error
+db.on('connected', () => {
   console.log('Connected to MongoDB');
-})
-.catch(error => {
-  console.error('MongoDB connection error:', error);
+});
+
+db.on('error', (error) => {
+  console.error('Error connecting to MongoDB:', error);
 });
 
 // Define the '/api/tasks' route for creating tasks
