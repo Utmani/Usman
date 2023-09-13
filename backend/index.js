@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3005;
 
 const Task = require('./models/Task');
 

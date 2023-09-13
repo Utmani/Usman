@@ -13,7 +13,7 @@ function App() {
   const fetchTasks = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:3002/api/tasks');
+      const response = await axios.get('http://localhost:3005/api/tasks');
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
@@ -25,7 +25,7 @@ function App() {
   const addTask = async () => {
     if (newTask) {
       try {
-        const response = await axios.post('http://localhost:3002/api/tasks', { text: newTask });
+        const response = await axios.post('http://localhost:3005/api/tasks', { text: newTask });
         setTasks([...tasks, response.data]);
         setNewTask('');
       } catch (error) {
@@ -38,7 +38,7 @@ function App() {
     const confirmDelete = window.confirm('Are you sure you want to delete this task?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3002/api/tasks/${id}`);
+        await axios.delete(`http://localhost:3005/api/tasks/${id}`);
         const updatedTasks = tasks.filter((task) => task._id !== id);
         setTasks(updatedTasks);
       } catch (error) {
